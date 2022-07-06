@@ -30,10 +30,10 @@ public class Main {
 //        Конвртирование из .csv в .json;
         CSVtoJSON_Parser.createCSV();
         String[] columnMapping = {"id", "firstName", "lastName", "country", "age"};
-        String fileName = "data.csv";
-        List<Employee> list = CSVtoJSON_Parser.parseCSV(columnMapping, fileName);
-        String json1 = listToJson(list);
-        writeString(json1, "data.json");
+        String fileName1 = "data.csv";
+        List<Employee> list1 = CSVtoJSON_Parser.parseCSV(columnMapping, fileName1);
+        String json1 = listToJson(list1);
+        writeString(json1, "data1.json");
 //        Конвртирование из .csv в .json закончено.
 
 //        Конвртирование из .xml в .json
@@ -49,6 +49,7 @@ public class Main {
         String fileName3 = "new_data.json";
         String json3 = JSON_Parser.readString(fileName3);
         List<Employee> list3 = JSON_Parser.jsonToList(json3);
+        System.out.println("Результат решения задачи 3:");
         for (Employee employee : list3) {
             System.out.println(employee);
 //        Конвртирование из .json в List<Employee> закончено

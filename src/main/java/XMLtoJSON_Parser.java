@@ -24,6 +24,7 @@ public class XMLtoJSON_Parser {
     private static final String TAG_LASTNAME = "lastName";
     private static final String TAG_COUNTRY = "country";
     private static final String TAG_AGE = "age";
+    private static final List<Employee> staff = new ArrayList<>();
 
     public static void createXML() {
         try {
@@ -84,49 +85,55 @@ public class XMLtoJSON_Parser {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.parse(fileName);
-        NodeList employeeElements = document.getDocumentElement().getElementsByTagName(TAG_EMPLOYEE);
-        List<Employee> staff = new ArrayList<>();
-        for (int i = 0; i < employeeElements.getLength(); i++) {
-            Node employee = employeeElements.item(i);
-            if (Node.ELEMENT_NODE != employee.getNodeType()) {
-                continue;
-            }
-            NodeList elements = employee.getChildNodes();
+        Node root = document.getDocumentElement();
+        return read(root);
+    }
 
-            long id = 0;
-            String firstName = "";
-            String lastName = "";
-            String country = "";
-            int age = 0;
-
-            for (int j = 0; j < elements.getLength(); j++) {
-                if (Node.ELEMENT_NODE != elements.item(j).getNodeType()) {
-                    continue;
+    //  Извлечение экземпляров класса Employee из xml-файла с любой степенью вложенности
+    private static List<Employee> read(Node node) {
+        NodeList nodeList = node.getChildNodes();
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node iterationNode = nodeList.item(i);
+            if (Node.ELEMENT_NODE == iterationNode.getNodeType()
+                    && iterationNode.getNodeName().equals(TAG_EMPLOYEE)) {
+                Element el = (Element) iterationNode;
+                NodeList elements = el.getChildNodes();
+                long id = 0;
+                String firstName = "";
+                String lastName = "";
+                String country = "";
+                int age = 0;
+                for (int j = 0; j < elements.getLength(); j++) {
+                    Node element = elements.item(j);
+                    if (Node.ELEMENT_NODE == element.getNodeType()) {
+                        switch (element.getNodeName()) {
+                            case TAG_ID: {
+                                id = Long.parseLong(element.getTextContent());
+                                break;
+                            }
+                            case TAG_FIRSTNAME: {
+                                firstName = element.getTextContent();
+                                break;
+                            }
+                            case TAG_LASTNAME: {
+                                lastName = element.getTextContent();
+                                break;
+                            }
+                            case TAG_COUNTRY: {
+                                country = element.getTextContent();
+                                break;
+                            }
+                            case TAG_AGE: {
+                                age = Integer.parseInt(element.getTextContent());
+                                break;
+                            }
+                        }
+                    }
                 }
-                switch (elements.item(j).getNodeName()) {
-                    case TAG_ID: {
-                        id = Long.parseLong(elements.item(j).getTextContent());
-                        break;
-                    }
-                    case TAG_FIRSTNAME: {
-                        firstName = elements.item(j).getTextContent();
-                        break;
-                    }
-                    case TAG_LASTNAME: {
-                        lastName = elements.item(j).getTextContent();
-                        break;
-                    }
-                    case TAG_COUNTRY: {
-                        country = elements.item(j).getTextContent();
-                        break;
-                    }
-                    case TAG_AGE: {
-                        age = Integer.parseInt(elements.item(j).getTextContent());
-                        break;
-                    }
-                }
+                staff.add(new Employee(id, firstName, lastName, country, age));
+                read(iterationNode);
             }
-            staff.add(new Employee(id, firstName, lastName, country, age));
+            read(iterationNode);
         }
         return staff;
     }
