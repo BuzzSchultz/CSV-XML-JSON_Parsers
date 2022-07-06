@@ -131,7 +131,6 @@ public class XMLtoJSON_Parser {
                     }
                 }
                 staff.add(new Employee(id, firstName, lastName, country, age));
-                read(iterationNode);
             }
             read(iterationNode);
         }
