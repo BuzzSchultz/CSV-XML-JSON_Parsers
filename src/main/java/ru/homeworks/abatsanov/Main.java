@@ -1,3 +1,5 @@
+package ru.homeworks.abatsanov;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -44,7 +46,7 @@ public class Main {
         writeString(json2, "data2.json");
         System.out.println("Конвртирование из .xml в .json закончено.");
 
-//        Конвртирование из .json в List<Employee>
+//        Конвртирование из .json в List<ru.homeworks.abatsanov.Employee>
         JSON_Parser.createJSON();
         String fileName3 = "new_data.json";
         String json3 = JSON_Parser.readString(fileName3);
@@ -53,6 +55,6 @@ public class Main {
         for (Employee employee : list3) {
             System.out.println(employee);
         }
-        System.out.println("Конвртирование из .json в List<Employee> закончено");
+        System.out.println("Конвртирование из .json в List<ru.homeworks.abatsanov.Employee> закончено");
     }
 }

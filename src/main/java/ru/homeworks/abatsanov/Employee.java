@@ -1,3 +1,5 @@
+package ru.homeworks.abatsanov;
+
 public class Employee {
     public long id;
     public String firstName;
@@ -11,7 +13,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" +
+        return "ru.homeworks.abatsanov.Employee{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

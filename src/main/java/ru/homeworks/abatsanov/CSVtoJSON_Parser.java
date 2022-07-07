@@ -1,3 +1,5 @@
+package ru.homeworks.abatsanov;
+
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.bean.ColumnPositionMappingStrategy;

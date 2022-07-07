@@ -1,3 +1,5 @@
+package ru.homeworks.abatsanov;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -89,7 +91,7 @@ public class XMLtoJSON_Parser {
         return read(root);
     }
 
-    //  Извлечение экземпляров класса Employee из xml-файла с любой степенью вложенности
+    //  Извлечение экземпляров класса ru.homeworks.abatsanov.Employee из xml-файла с любой степенью вложенности
     private static List<Employee> read(Node node) {
         NodeList nodeList = node.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
