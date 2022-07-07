@@ -34,7 +34,7 @@ public class Main {
         List<Employee> list1 = CSVtoJSON_Parser.parseCSV(columnMapping, fileName1);
         String json1 = listToJson(list1);
         writeString(json1, "data1.json");
-//        Конвртирование из .csv в .json закончено.
+        System.out.println("Конвртирование из .csv в .json закончено.");
 
 //        Конвртирование из .xml в .json
         XMLtoJSON_Parser.createXML();
@@ -42,7 +42,7 @@ public class Main {
         List<Employee> list2 = XMLtoJSON_Parser.parseXML(fileName2);
         String json2 = listToJson(list2);
         writeString(json2, "data2.json");
-//        Конвртирование из .xml в .json закончено.
+        System.out.println("Конвртирование из .xml в .json закончено.");
 
 //        Конвртирование из .json в List<Employee>
         JSON_Parser.createJSON();
@@ -52,7 +52,7 @@ public class Main {
         System.out.println("Результат решения задачи 3:");
         for (Employee employee : list3) {
             System.out.println(employee);
-//        Конвртирование из .json в List<Employee> закончено
         }
+        System.out.println("Конвртирование из .json в List<Employee> закончено");
     }
 }

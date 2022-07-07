@@ -1,4 +1,4 @@
-package ru.Homeworks.A_Batsanov;
+package ru.homeworks.abatsanov;
 
 import static org.junit.Assert.assertTrue;
 
